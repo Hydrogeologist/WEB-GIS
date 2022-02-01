@@ -47,11 +47,12 @@ var buStops = L.geoJson(bus, {
 }).addTo(map);
 
 function onEachFeature(feature, layer) {
-  var popupContent = "I am a bus stop";
-  if (feature.properties && feature.properties.popupContent) {
-    popupContent += feature.properties.popupContent;
+  if (feature.properties) {
+    var prop = feature.properties;
+    var popup = '<h3>' + 'Bus Stop ID: ' + prop["ID"] + '</h3>' + 'Route Number(s): ' + prop["Route_Numb"];
+    feature.layer = layer;
+    layer.bindPopup(popup);
   }
-  layer.bindPopup(popupContent);
 }
 
   </script>
