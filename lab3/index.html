@@ -71,11 +71,12 @@ var canvas = L.tileLayer('https://stamen-tiles-{s}.a.ssl.fastly.net/toner/{z}/{x
 
 
     function getColor(value) {
-                return value > 50000000 ? '#54278f':
-                       value > 25000000  ? '#756bb1':
-                       value > 10000000  ? '#9e9ac8':
-                       value > 5000000  ? '#cbc9e2':
-                                          '#f2f0f7';
+                return value > 75000000 ?  '#660066':
+                       value > 50000000  ? '#9900cc':
+                       value > 30000000  ? '#cc00cc':
+                       value > 10000000  ? '#ff00ff':
+                       value > 5000000  ?  '#ff99ff':
+                                           '#ffccff';
             }
 
     function style(feature){
@@ -91,7 +92,7 @@ var canvas = L.tileLayer('https://stamen-tiles-{s}.a.ssl.fastly.net/toner/{z}/{x
 
 
 var provinces = new L.geoJson(provinces, {style:style}).addTo(map);
-var minValue = 250;
+var minValue = 150;
 var minRadius = 5;
 
 
@@ -101,12 +102,12 @@ function calcRadius(val) {
 
 
 function getCovidColor(value) {
-                return value >= 16678 ? '#D82C20':
-                       value >= 750  ? '#EB5757':
-                       value >= 550  ? '#77C4A8':
-                       value >= 200  ? '#99E472':
-                       value >= 50  ? '#23C26F':
-                       value >= 10  ? '#0AAC00':'#026645';
+                return value >= 16678 ? '#ff0000':
+                       value >= 750  ? '#cc0000':
+                       value >= 550  ? '##ff0000':
+                       value >= 200  ? '#ff6600':
+                       value >= 50  ? '#ff9966':
+                       value >= 10  ? '#ffff66':'#ccff33';
             }
 
 
@@ -154,7 +155,7 @@ var legend = L.control({position: 'bottomright'}); // Try the other lower corner
     legend.onAdd = function (map) {
 
       var div = L.DomUtil.create('div', 'legend'),
-        grades = [0, 1000000, 2000000, 5000000, 10000000]; // break values to define the intervals of population - YOU WILL NEED TO MODIFY IT TO GET THE RIGHT LEGEND BREAKS
+        grades = [0,5000000,10000000,30000000,50000000,75000000]; // break values to define the intervals of population - YOU WILL NEED TO MODIFY IT TO GET THE RIGHT LEGEND BREAKS
 
          div.innerHTML = '<b>Population 2019 <br><br></b>';
 // The legend title, in this case it's Population 2019
@@ -184,10 +185,6 @@ var legend = L.control({position: 'bottomright'}); // Try the other lower corner
                 legend.addTo(map);
               }
             });
-
-
-/*@.features[0:].properties.covid*/
-
         </script>
    </body>
 </html>
