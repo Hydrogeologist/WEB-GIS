@@ -32,9 +32,9 @@ const renderer = {
   legendOptions: {title: "Assessed values in Lincoln"},
           symbol: {
             type: "simple-marker",
-            color: "yellow",
+            color: "red",
             outline: {
-              color: "black"
+              color: "white"
             }
           },
            visualVariables: [
@@ -42,25 +42,21 @@ const renderer = {
               type: "size",
               field: "CNTASSDVAL",
               stops: [
-                {
-                  value: 25000,
-                   size: "5px",
-       label: "Under 25,000"
-                },
+                
                 {
                    value: 100000,
-                    size: "10px",
-        label: "20,000 to 99,999"
+                    size: "7px",
+        label: "Low"
                 },
    {
        value: 500000,
-                     size: "15px",
-         label: "100,000 to 500,000"
+                     size: "17px",
+         label: "Medium"
                 },
                 {
-                    value: 2500000,
-                     size: "25px",
-         label: "Astronomical"
+                    value: 1000000,
+                     size: "26px",
+         label: "High"
                 }
               ]
             }
@@ -71,7 +67,7 @@ const renderer = {
 
   const geojsonLayer = new GeoJSONLayer({
   url: url,
-  copyright: "Rob Shepard",
+  copyright: "Hydrogeologist",
   renderer: renderer
   });
 
@@ -98,16 +94,16 @@ const renderer = {
           });
 
 
-                  const legend = new Legend({
+    const legend = new Legend({
     view:view,
     layerInfos: [{
     layer: geojsonLayer,
-    title: "Legend"
+    title: "Lab 6 Symbols"
     }]
     });
 
     map.add(featureLayer);
-    view.ui.add(legend, "bottom-right");
+    view.ui.add(legend, "bottom-left");
 
 
 
